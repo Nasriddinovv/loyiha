@@ -1,0 +1,85 @@
+
+<!-- Yangilab qo'ydim -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Technics</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     <link href="./output.css" rel="stylesheet">    
+</head>
+<body>
+<nav class="bg-gray-800  shadow-lg p-4 flex justify-between items-center border-b-2 border-blue-500">
+    <div class="text-2xl font-black text-blue-600 tracking-tighter italic">
+        MY_SHOP
+    </div>
+    <div class="space-x-6 font-medium text-gray-200">
+        <a href="#" class="hover:text-blue-500 transition">Bosh sahifa</a>
+        <a href="#" class="hover:text-blue-500 transition">Mahsulotlar</a>
+        <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow-md">Kirish</a>
+    </div>
+</nav>
+
+<div class="bg-black   text-white">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-14 lg:max-w-7xl lg:px-8">
+        <h2 class="sr-only">Products</h2>
+
+
+            <form action="{% url 'search' %}" method="post" style="position: relative; display: inline-block; width: 50%; margin-bottom: 20px;">
+                {% csrf_token %}
+                <input type="text" 
+                    name="query"  placeholder="Mahsulot nomini kiriting..." 
+                    style="width: 100%; padding: 12px 100px 12px 15px; background: black; border: 2px solid #007bff; border-radius: 8px; color: white; outline: none;">
+                
+                <button type="submit" 
+                        style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #007bff; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer;">
+                    qidirish
+                </button>
+
+            </form>
+            <br><br>
+
+            <form action="{% url 'filter_category'  %}" method="post" style="display: inline-block; margin-bottom: 20px; background: black; color: black; padding: 10px; border: 2px solid #007bff; border-radius: 8px;">
+                {% csrf_token %}
+                <select name="category_id" >
+                    <option value="0">____________</option>
+                    
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                    
+                </select>
+                <button type="submit" >
+                    filtirlash
+                </button>
+            </form>
+            
+
+        <h1><b><i>Mahsulotlar</i></b></h1>
+
+            <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8 top">
+                
+                {% for i in products %}
+
+                <a href="{% url 'detail' i.id %}" class="group">
+                    {% if i.rasm %}
+                        <img src="{{ i.rasm.url }}" alt="{{ i.name }}" class="...">
+                    {% else %}
+                        <img src="/media/default.png" alt="Rasm yuklanmagan" class="...">
+                    {% endif %}
+                    <h3 class="mt-4 text-sm text-gray-300">{{i.name}}</h3>
+                    <p class="mt-1 text-lg font-medium text-white underline">{{i.price}} $</p>
+                </a>
+
+                {% endfor %}
+
+            </div>
+        
+    </div>
+</div>
+
+</body>
+</html>
+<!-- asdahdahsidh -->
