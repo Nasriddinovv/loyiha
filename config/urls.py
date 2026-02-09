@@ -22,7 +22,7 @@ from products.views import get_products , detail, search_product, filter_categor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('get/', get_products),
+    path('', get_products),
     path('detail/<int:id>', detail,  name = "detail"),
     path('search/', search_product, name = "search"),
     path('filter/', filter_category, name = "filter_category"),
