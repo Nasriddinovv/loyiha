@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4$z8t5=1f#)jvbp1pes_%kp8q7c@@tiop2!g*14hah&yi!8nuj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nasriddinov.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['nasriddinov.pythonanywhere.com', 'localhost', '127.0.0.1', 'https://market.shitob.live/']
 
 
 # Application definition
